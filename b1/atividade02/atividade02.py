@@ -81,4 +81,4 @@ def main():
     q4()
 
 if(__name__ == "__main__"):
-    q4()
+    main()
