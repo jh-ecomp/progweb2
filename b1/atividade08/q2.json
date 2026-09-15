@@ -1,0 +1,14 @@
+{
+    "1": {
+        "id": "1",
+        "nome": "Notebook",
+        "qtd": 10,
+        "valor_uni": 3500.0
+    },
+    "3": {
+        "id": "3",
+        "nome": "Teclado Mecânico",
+        "qtd": 89,
+        "valor_uni": 330.0
+    }
+}
