@@ -8,3 +8,5 @@ O programa deverá ler do arquivo contador.txt o número atual de acessos.
 Incrementar o contador em 1.
 Gravar o novo valor no arquivo.
 Exibir na tela a mensagem: Este sistema já foi acessado X vezes.
+Data: 2026-09-16 | Quantidade de palavras: 164
+Data: 2026-09-16 | Quantidade de palavras: 171

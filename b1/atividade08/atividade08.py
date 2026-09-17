@@ -1,4 +1,6 @@
 import json
+import re
+from datetime import datetime as dt
 
 def q1():
     print("-----  Questāo 1  -----")
@@ -138,18 +140,41 @@ def q3():
         linha = diario.readline()
 
         while(linha):
-            palavras = linha.split(' ')
+            palavras = re.sub('[^a-zA-Z ]+', '*', linha).split(' ')
             qtd_palavras += len(palavras)
             linha = diario.readline()
 
-    print(qtd_palavras)
+        print(f"Data: {dt.now().date()} | Quantidade de palavras: {qtd_palavras}")
+
+    with open('diario.txt', mode='a') as diario:
+        diario.write(f"\nData: {dt.now().date()} | Quantidade de palavras: {qtd_palavras}")
+
+def q4():
+    print("-----  Questāo 3  -----")
+    qtd = 0
+
+    try:
+        with open('contador.txt', mode='r') as contador:
+            qtd = int(contador.readline())
+    except FileNotFoundError:
+        with open('contador.txt', mode='w') as contador:
+            contador.write('0')
+        qtd = 0
+
+    qtd += 1
+    print(f"Este sistema já foi acessado {qtd} vezes.")
+
+    with open('contador.txt', mode='w') as contador:
+        contador.write(str(qtd))
+
 
 
 def main():
     q1()
     q2()
     q3()
+    q4()
 
 
 if(__name__ == "__main__"):
-    q3()
+    main()
