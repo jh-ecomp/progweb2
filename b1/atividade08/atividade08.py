@@ -150,7 +150,7 @@ def q3():
         diario.write(f"\nData: {dt.now().date()} | Quantidade de palavras: {qtd_palavras}")
 
 def q4():
-    print("-----  Questāo 3  -----")
+    print("-----  Questāo 4  -----")
     qtd = 0
 
     try:
