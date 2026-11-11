@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} {{ title }} {% endblock %}
+
+{% block 'body' %}
+
+<h2>Página Inicial</h2>
+<hr/>
+
+<p align="right"> Bem vindo <strong>{{usuario}}</strong>!</p><hr/>
+<br/>
+<br/>
+<p>Você pode acessar a página de cadastro aqui!</p>
+<a href="{% url 'cadastro' %}" class="btn btn-primary">Cadastro de usuários</a>
+
+{% endblock %}

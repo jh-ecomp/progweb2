@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} {{ title }} {% endblock %}
+
+{% block 'body' %}
+
+<h2>Cadastro de usuários</h2>
+<hr/>
+
+<p align="right"> Bem vindo <strong>{{usuario}}</strong>!</p><hr/>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="nome">Nome:</label>
+    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+    <br/>
+    <label for="tarefa">Tarefa:</label>
+    <input type="text" class="form-control" id="tarefa" name="tarefa" placeholder="Digite a tarefa">
+    <br/>
+    &nbsp<button type="submit" class=" btn btn-primary">Cadastrar</button>
+</form>
+
+{% if dados.nome %}
+<p>Nome: {{dados.nome}}</p>
+<p>Tarefa: {{dados.tarefa}}</p>
+<p>Usuário cadastrado com sucesso!</p>
+{% endif %}
+
+{% endblock %}
