@@ -1,22 +1,27 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from . models import Usuario
 import hashlib
 
 # Create your views here.
 
 
-def cadastro(request: HttpRequest) -> HttpResponse:
+def cadastro(request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
     status = request.GET.get('status')
     return render(request, 'cadastro.html', {'status': status})
 
 def login(request: HttpRequest) -> HttpResponse:
-    return render(request, 'login.html')
+    status = request.GET.get('status', '')
+    
+    if request.session.get('usuario'):
+        return redirect('/home/')
+    return render(request, 'login.html', {'status': status})
+
 
 def valida_cadastro(request: HttpRequest) -> HttpResponse:
-    nome = request.POST.get('nome')
-    email = request.POST.get('email')
-    senha = request.POST.get('senha')
+    nome = request.POST.get('nome', '')
+    email = request.POST.get('email', '')
+    senha = request.POST.get('senha', '')
 
     # request.session['user'] = nome # isso cria uma variável de sessão
 
@@ -40,3 +45,17 @@ def valida_cadastro(request: HttpRequest) -> HttpResponse:
         return redirect('/auth/cadastro/?status=0')
     except:
         return redirect('/auth/cadastro/?status=4')
+
+def valida_login(request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
+    email = request.POST.get('email', '')
+    senha = request.POST.get('senha', '')
+
+    senha = hashlib.sha256(senha.encode()).hexdigest()
+    usuarios = Usuario.objects.filter(email=email).filter(senha=senha)
+
+    if len(usuarios) <= 0:
+        return redirect('/auth/login/?status=1')
+    else:
+        request.session['usuario'] = usuarios[0].pk
+        return redirect('/home/')
+

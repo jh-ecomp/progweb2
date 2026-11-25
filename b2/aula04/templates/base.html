@@ -11,7 +11,10 @@
 
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">&nbsp&nbspSisIFPI</a>
+        <a class="navbar-brand" href="{% if request.session.usuario %}{% url 'home' %}{% else %}{% url 'login' %}{% endif %}">&nbsp;&nbsp;SisIFPI</a>
+        {% if request.session.usuario %}
+            <a href="{% url 'sair' %}" class="btn btn-outline-light ml-auto">Sair</a>
+        {% endif %}
     </nav>
     <script src="<https://code.jquery.com/jquery-3.5.1.slim.min.js>"></script>
     <script src="<https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js>"></script>

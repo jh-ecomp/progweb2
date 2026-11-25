@@ -220,3 +220,8 @@ __marimo__/
 
 # Antigravity
 graphify-out/
+
+# media
+assets/
+media/
+static/
